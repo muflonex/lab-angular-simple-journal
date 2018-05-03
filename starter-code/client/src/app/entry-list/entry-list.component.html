@@ -1,0 +1,20 @@
+<ul>
+  <li *ngFor="let l of list2">
+      <a [routerLink]="['/entry',l._id]">{{l.title}} - {{l.date | date:'short'}}</a>
+  </li>
+</ul>
+<form (ngSubmit)="createEntry(entryForm.value)" #entryForm="ngForm">
+  <input type="text" placeholder="title" name="title" ngModel required minlength="4">
+  <div *ngIf="entryForm.value.title.length < 4">
+      <p class="error" [hidden]="entryForm.value.title.length > 4">
+        Pero chico..!
+      </p>
+    </div>
+  <input type="text" placeholder="message" name="content" ngModel required minlength="4">
+  <div *ngIf="!entryForm.value.content">
+      <p class="error" [hidden]="entryForm.value.content">
+        Pero chico..ppep
+      </p>
+    </div>
+  <button>Send</button>
+</form>
